@@ -1,10 +1,8 @@
 #include "leerarchivotxt.h"
 using namespace std;
 
-/*leerArchivo::leerArchivo()
-{*/
-
-
+leerArchivo::leerArchivo() {
+}
 
 
 void leerArchivo::escribirArchivo() {

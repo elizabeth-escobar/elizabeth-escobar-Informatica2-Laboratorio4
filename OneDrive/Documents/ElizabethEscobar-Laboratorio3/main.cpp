@@ -277,10 +277,9 @@ int main() {
                     break;
             }
         }
-
         case '2':{
             leerArchivo archivo;
-                char opcion;
+            char opcion;
 
                 cout << "Seleccione una opcion:" << endl;
                 cout << "1. Escribir en un archivo" << endl;
@@ -293,6 +292,7 @@ int main() {
                         archivo.escribirArchivo();
                         break;
                     case '2':
+
                         archivo.lecturaArchivo();
                         break;
                     default:
@@ -301,10 +301,34 @@ int main() {
                 }
 
         }
+
         case '3':{
+            busquedaCaracter archivo;
+                archivo.~busquedaCaracter();
+                return 0;
 
         }
+
         case '4':{
+            codificacionMensaje codificarMensaje;
+            int opcion;
+            cout << "Ingrese '0' si desea codificar el mensaje." << endl;
+            cout << "Ingrese '1' si desea decodificar el mensaje." << endl;
+            cin >> opcion;
+
+            if (opcion == 0) {
+                codificarMensaje.codificarMensaje();
+                break;
+            }
+            else if (opcion == 1) {
+                codificarMensaje.decodificarMensaje();
+                break;
+            }
+            else {
+                cout << "Opcion no valida." << endl;
+                break;
+            }
+
 
         }
 
