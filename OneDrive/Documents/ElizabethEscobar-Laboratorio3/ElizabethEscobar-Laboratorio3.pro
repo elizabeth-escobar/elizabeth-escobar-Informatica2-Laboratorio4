@@ -5,11 +5,15 @@ CONFIG -= qt
 
 SOURCES += \
         busquedacaracter.cpp \
+        codificacionmensaje.cpp \
         cuentacorriente.cpp \
+        informacionpelicula.cpp \
         leerarchivotxt.cpp \
         main.cpp
 
 HEADERS += \
     busquedacaracter.h \
+    codificacionmensaje.h \
     cuentacorriente.h \
+    informacionpelicula.h \
     leerarchivotxt.h
