@@ -1,9 +1,5 @@
 #include "cuentacorriente.h"
 
-CuentaCorriente::CuentaCorriente()
-{
-
-}
 
 double CuentaCorriente::getSaldo() const
 {
@@ -29,9 +25,13 @@ string CuentaCorriente::getTelefono(){
 
 float CuentaCorriente::getSaldoNegativo() const
 {
-    return saldoNegativo;
+    return saldo < 0;
 }
 
+/*void CuentaCorriente::setSaldoNegativo(float newSaldoNegativo)
+{
+    saldoNegativo = newSaldoNegativo;
+}*/
 
 float CuentaCorriente::getConsultarCuenta() const
 {
@@ -66,12 +66,22 @@ void CuentaCorriente::setTelefono(string _telefono){
     telefono = _telefono;
 }
 
-void CuentaCorriente::calcularSaldo(float cantidad){
-    saldo = saldo-cantidad;
+void CuentaCorriente::setSaldo(double newSaldo) {
+    saldo = newSaldo;
 }
 
-/*void CuentaCorriente::retirarDinero(){
-    float saldoActual= saldoActual - candidadIndicada;
-    cout<<""<<endl;
-    cout saldoActual<<endl;
+void CuentaCorriente::calcularSaldo(double cantidad) {
+    saldo += cantidad;
+}
+
+/*void CuentaCorriente::setConsultarCuenta() {
+    saldo;
 }*/
+
+void CuentaCorriente::setIngresarDinero(double cantidad) {
+    saldo += cantidad;
+}
+
+void CuentaCorriente::setRetirarDinero(double cantidad) {
+    saldo -= cantidad;
+}

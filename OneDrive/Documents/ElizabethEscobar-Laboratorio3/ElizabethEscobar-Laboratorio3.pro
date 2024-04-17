@@ -4,8 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        busquedacaracter.cpp \
         cuentacorriente.cpp \
+        leerarchivotxt.cpp \
         main.cpp
 
 HEADERS += \
-    cuentacorriente.h
+    busquedacaracter.h \
+    cuentacorriente.h \
+    leerarchivotxt.h

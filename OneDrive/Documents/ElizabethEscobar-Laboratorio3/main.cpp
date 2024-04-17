@@ -2,171 +2,136 @@
 #include "cuentacorriente.h"
 using namespace std;
 
-class cuentacorriente{
-
-};
-
-
-
 void menu() {
     cout << ":::::::Menu Principal:::::::" << endl;
-    cout << "Seleccione una opción:" << endl;
-    cout << "1 ***Ejercicio1 cuenta corriente*** " << endl;
-    cout << "2 ***Ejercicio2 cuenta corriente*** " << endl;
-    cout << "3 ***Ejercicio3 cuenta corriente*** " << endl;
-    cout << "4 ***Ejercicio4 cuenta corriente*** " << endl;
-    cout << "5 ***Ejercicio5 cuenta corriente*** " << endl;
-
-    cout << "Seleccione una opción:" << endl;
+    cout << "Seleccione una opcion:" << endl;
     cout << "1. Ingresar datos de la cuenta" << endl;
     cout << "2. Modificar datos de la cuenta" << endl;
     cout << "3. Realizar operaciones" << endl;
     cout << "0. Salir" << endl;
 }
 
-int main()
-{
+int main() {
     char opcion;
-    CuentaCorriente cuentaEE;
-    cuentaEE.setNombre("");
-    cuentaEE.setApellido("");
-    cuentaEE.setDireccion("");
-    cuentaEE.setTelefono("");
+    CuentaCorriente cuentaEE; // Utiliza el constructor por defecto
 
-    cout << "El nombre del cliente es" << cuentaEE.getNombre()<<endl;
+    while (true) {
+        menu();
+        cout << "Ingrese su opcion: ";
+        cin >> opcion;
 
-while (true) {
-       menu();
-       cout << "Ingrese su opción: ";
-       cin >> opcion;
+        switch (opcion) {
+            case '1': {
+                string nombre, apellido, direccion, telefono;
+                double saldo;
 
-       if opcion==1{
-           cout << "Seleccione una opción:" << endl;
-           cout << "1. Ingresar datos de la cuenta" << endl;
-           cout << "2. Modificar datos de la cuenta" << endl;
-           cout << "3. Realizar operaciones" << endl;
-           cout << "0. Salir" << endl;
+                cout << "Ingrese su nombre: ";
+                cin.ignore();
+                getline(cin, nombre);
+                cout << "Ingrese sus apellidos: ";
+                getline(cin, apellido);
+                cout << "Ingrese su direccion: ";
+                getline(cin, direccion);
+                cout << "Ingrese su numero de telefono: ";
+                getline(cin, telefono);
+                cout << "Ingrese su saldo inicial: ";
+                cin >> saldo;
 
-            switch (opcion) {
-                 case '1': {
-                    string nombre, apellidos, direccion, telefono;
-                    double saldo;
+                cuentaEE.setNombre(nombre);
+                cuentaEE.setApellido(apellido);
+                cuentaEE.setDireccion(direccion);
+                cuentaEE.setTelefono(telefono);
+                cuentaEE.setSaldo(saldo);
 
-                    cout << "Ingrese su nombre: ";
-                    cin.ignore();
-                    getline(cin, nombre);
-                    cout << "Ingrese sus apellidos: ";
-                    getline(cin, apellidos);
-                    cout << "Ingrese su dirección: ";
-                    getline(cin, direccion);
-                    cout << "Ingrese su número de teléfono: ";
-                    getline(cin, telefono);
-                    cout << "Ingrese su saldo inicial: ";
-                    cin >> saldo;
-
-                    cuenta.setNombre(nombre);
-                    cuenta.setApellidos(apellidos);
-                    cuenta.setDireccion(direccion);
-                    cuenta.setTelefono(telefono);
-                    cuenta.setSaldo(saldo);
-
-                    cout << "Datos de la cuenta ingresados correctamente." << endl;
-                    break;
-                }
-
-                case '2': {
-                    string nombre, apellidos, direccion, telefono;
-
-                    cout << "Ingrese su nuevo nombre: ";
-                    cin.ignore();
-                    getline(cin, nombre);
-                    cout << "Ingrese sus nuevos apellidos: ";
-                    getline(cin, apellidos);
-                    cout << "Ingrese su nueva dirección: ";
-                    getline(cin, direccion);
-                    cout << "Ingrese su nuevo número de teléfono: ";
-                    getline(cin, telefono);
-
-                    cuenta.setNombre(nombre);
-                    cuenta.setApellidos(apellidos);
-                    cuenta.setDireccion(direccion);
-                    cuenta.setTelefono(telefono);
-
-                    cout << "Datos de la cuenta modificados correctamente." << endl;
-                    break;
-           }
-
-                case '3': {
-                    char opcion_operaciones;
-                    double cantidad;
-
-                    cout << "Seleccione una operación:" << endl;
-                    cout << "1. Consultar datos de la cuenta" << endl;
-                    cout << "2. Retirar dinero" << endl;
-                    cout << "3. Ingresar dinero" << endl;
-                    cout << "4. Consultar si el saldo es negativo" << endl;
-                    cout << "0. Volver al menú principal" << endl;
-                    cout << "Ingrese su opción: ";
-                    cin >> opcion_operaciones;
-
-                    switch (opcion_operaciones) {
-                        case '1':
-                            cuenta.consultarCuenta();
-                            break;
-
-                        case '2':
-                            cout << "Ingrese la cantidad a retirar: ";
-                            cin >> cantidad;
-                            cuenta.retirarDinero(cantidad);
-                            cout << "Dinero retirado correctamente." << endl;
-                            break;
-
-                        case '3':
-                            cout << "Ingrese la cantidad a ingresar: ";
-                            cin >> cantidad;
-                            cuenta.ingresarDinero(cantidad);
-                            cout << "Dinero ingresado correctamente." << endl;
-                            break;
-
-                        case '4':
-                            if (cuenta.saldoNegativo())
-                                cout << "La cuenta está en números rojos." << endl;
-                            else
-                                cout << "La cuenta no está en números rojos." << endl;
-                            break;
-
-                        case '0':
-                            break;
-
-                        default:
-                            cout << "Opción no válida." << endl;
-                            break;
-                    }
-                    break;
-                }
-
-                case '0':
-                    cout << "Saliendo del programa..." << endl;
-                    return 0;
-
-                default:
-                    cout << "Opción no válida." << endl;
-                    break;
-                }
+                cout << "Datos de la cuenta ingresados correctamente.\n" << endl;
+                break;
             }
+
+            case '2': {
+                string nombre, apellido, direccion, telefono;
+
+                cout << "Ingrese su nuevo nombre: ";
+                cin.ignore();
+                getline(cin, nombre);
+                cout << "Ingrese sus nuevos apellidos: ";
+                getline(cin, apellido);
+                cout << "Ingrese su nueva direccion: ";
+                getline(cin, direccion);
+                cout << "Ingrese su nuevo numero de telefono: ";
+                getline(cin, telefono);
+
+                cuentaEE.setNombre(nombre);
+                cuentaEE.setApellido(apellido);
+                cuentaEE.setDireccion(direccion);
+                cuentaEE.setTelefono(telefono);
+
+                cout << "Datos de la cuenta modificados correctamente.\n" << endl;
+                break;
+            }
+
+            case '3': {
+                char opcion_operaciones;
+                double cantidad;
+
+                cout << "Seleccione una operacion:" << endl;
+                cout << "1. Consultar datos de la cuenta" << endl;
+                cout << "2. Retirar dinero" << endl;
+                cout << "3. Ingresar dinero" << endl;
+                cout << "4. Consultar si el saldo es negativo" << endl;
+                cout << "5. Consultar saldo Actual" << endl;
+                cout << "0. Volver al menu principal" << endl;
+                cout << "Ingrese su opcion: ";
+                cin >> opcion_operaciones;
+
+                switch (opcion_operaciones) {
+                    case '1':
+                        cuentaEE.getConsultarCuenta();
+                        break;
+
+                    case '2':
+                        cout << "Ingrese la cantidad a retirar: ";
+                        cin >> cantidad;
+                        cuentaEE.setRetirarDinero(cantidad);
+                        cout << "Dinero retirado correctamente." << endl;
+                        break;
+
+                    case '3':
+                        cout << "Ingrese la cantidad a ingresar: ";
+                        cin >> cantidad;
+                        cuentaEE.setIngresarDinero(cantidad);
+                        cout << "Dinero ingresado correctamente." << endl;
+                        break;
+
+                    case '4':
+                        if (cuentaEE.getSaldoNegativo())
+                            cout << "La cuenta esta en numeros rojos." << endl;
+                        else
+                            cout << "La cuenta no esta en numeros rojos." << endl;
+                        break;
+                    case '5':
+                            cout << "El saldo actual es: " << cuentaEE.getSaldo() << endl;
+                        break;
+
+                    case '0':
+                        break;
+
+                    default:
+                        cout << "Opcion no valida." << endl;
+                        break;
+                }
+                break; // Finaliza el switch
+            }
+
+            case '0':
+                cout << "Saliendo del programa..." << endl;
+                return 0;
+
+            default:
+                cout << "Opcion no valida." << endl;
+                break;
         }
+    }
 
-      else if opcion==2{
-       }
-
-
-
-       else if opcion==3{
-       }
-       else if opcion==4{
-       }
-       else if opcion==5{
-       }
-
-   return 0;
+    return 0;
 }
+
