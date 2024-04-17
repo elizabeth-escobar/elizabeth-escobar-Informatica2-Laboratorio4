@@ -5,6 +5,12 @@ CuentaCorriente::CuentaCorriente()
 
 }
 
+double CuentaCorriente::getSaldo() const
+{
+    return saldo;
+}
+
+
 string CuentaCorriente::getNombre(){
     return nombre;
 }
@@ -21,6 +27,29 @@ string CuentaCorriente::getTelefono(){
     return telefono;
 }
 
+float CuentaCorriente::getSaldoNegativo() const
+{
+    return saldoNegativo;
+}
+
+
+float CuentaCorriente::getConsultarCuenta() const
+{
+    return consultarCuenta;
+}
+
+float CuentaCorriente::getIngresarDinero() const
+{
+    return ingresarDinero;
+}
+
+float CuentaCorriente::getRetirarDinero() const
+{
+    return retirarDinero;
+}
+
+//Metodos
+
 void CuentaCorriente::setNombre(string _nombre){
     nombre = _nombre;
 }
@@ -35,6 +64,10 @@ void CuentaCorriente::setDireccion(string _direccion){
 
 void CuentaCorriente::setTelefono(string _telefono){
     telefono = _telefono;
+}
+
+void CuentaCorriente::calcularSaldo(float cantidad){
+    saldo = saldo-cantidad;
 }
 
 /*void CuentaCorriente::retirarDinero(){
