@@ -1,0 +1,4 @@
+#ifndef SUPERMERCADO_H
+#define SUPERMERCADO_H
+
+#endif // SUPERMERCADO_H
