@@ -1,4 +1,7 @@
 #include <iostream>
+#include<productos.h>
+#include<cuentaCorriente.h>
+#include<compra.h>
 
 using namespace std;
 

@@ -10,4 +10,6 @@ SOURCES += \
         productos.cpp
 
 HEADERS += \
-    supermercado.h
+    compra.h \
+    cuentaCorriente.h \
+    productos.h
