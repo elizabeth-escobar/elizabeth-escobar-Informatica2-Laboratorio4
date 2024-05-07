@@ -13,3 +13,8 @@ HEADERS += \
     compra.h \
     cuentaCorriente.h \
     productos.h
+
+DISTFILES += \
+    ../../Nueva carpeta/productos_aseo.csv \
+    ../../Nueva carpeta/productos_comestibles.csv \
+    ../../Nueva carpeta/productos_electronicos .csv

@@ -17,7 +17,7 @@ using namespace std;
 
 
 // Función para cargar productos desde archivos CSV específicos para cada categoría
-int cargarProductosDesdeCSV(string archivoComestibles, string archivoElectronicos, string archivoAseo, productos* listaProductos[], int& numProductos) {
+int cargarProductosDesdeCSV(productos* listaProductos[], int& numProductos) {
     int totalProductos = 0;
 
     // Función interna para cargar productos de un archivo CSV
@@ -63,9 +63,9 @@ int cargarProductosDesdeCSV(string archivoComestibles, string archivoElectronico
     };
 
     // Cargar productos de cada archivo CSV
-    cargarProductos(archivoComestibles);
-    cargarProductos(archivoElectronicos);
-    cargarProductos(archivoAseo);
+    cargarProductos("productos_comestibles.csv");
+    cargarProductos("productos_electronicos.csv");
+    cargarProductos("productos_aseo.csv");
 
     // Actualizar el número total de productos
     numProductos = totalProductos;
@@ -73,32 +73,3 @@ int cargarProductosDesdeCSV(string archivoComestibles, string archivoElectronico
     // Devolver el número total de productos cargados
     return totalProductos;
 }
-
-// Ejemplo de uso
-/*int main() {
-    // Arreglo para almacenar punteros a productos
-    productos* listaProductos[MAX_PRODUCTOS];
-    int numProductos = 0;
-
-    // Rutas de los archivos CSV
-    string archivoComestibles = "productos_comestibles.csv";
-    string archivoElectronicos = "productos_electronicos.csv";
-    string archivoAseo = "productos_aseo.csv";
-
-    // Cargar los productos desde los archivos CSV
-    cargarProductosDesdeCSV(archivoComestibles, archivoElectronicos, archivoAseo, listaProductos, numProductos);
-
-    // Ahora puedes manipular la lista de productos como desees
-
-    // Recorrer y mostrar los productos
-    for (int i = 0; i < numProductos; ++i) {
-        cout << "Nombre: " << listaProductos[i]->getNombre() << ", Marca: " << listaProductos[i]->getMarca() << ", Precio: " << listaProductos[i]->getPrecio() << endl;
-    }
-
-    // Liberar la memoria de los productos creados dinámicamente
-    for (int i = 0; i < numProductos; ++i) {
-        delete listaProductos[i];
-    }
-
-    return 0;
-}*/
