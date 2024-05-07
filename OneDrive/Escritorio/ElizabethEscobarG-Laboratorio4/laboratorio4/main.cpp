@@ -3,11 +3,12 @@
 #include<cuentaCorriente.h>
 #include<compra.h>
 #include<productos.cpp>
+#include<compra.cpp>
 
 using namespace std;
 
 // Definición de la constante para el tamaño máximo de productos
-//const int MAX_PRODUCTOS = 1000;
+const int MAX_PRODUCTOS = 1000;
 
 
 // Constantes para los archivos CSV de cada categoría
@@ -86,18 +87,21 @@ void modificarProductos(string archivoCSV) {
 
 int main() {
     int opcion;
+    // Declarar e inicializar listaProductos y numProductos
+        productos* listaProductos[MAX_PRODUCTOS];
+        int numProductos = 0;
 
     do {
         cout << "\n::::::::::MENU PRINCIPAL::::::::::" << endl;
         cout << "1. Ver productos comestibles" << endl;
-        cout << "2. Ver productos electrónicos" << endl;
+        cout << "2. Ver productos electronicos" << endl;
         cout << "3. Ver productos de aseo" << endl;
         cout << "4. Modificar productos comestibles" << endl;
-        cout << "5. Modificar productos electrónicos" << endl;
+        cout << "5. Modificar productos electronicos" << endl;
         cout << "6. Modificar productos de aseo" << endl;
         cout << "7. Realizar compra" << endl;
         cout << "8. Salir" << endl;
-        cout << "Ingrese su opción: ";
+        cout << "Ingrese su opcion: ";
         cin >> opcion;
 
         switch (opcion) {
@@ -120,13 +124,13 @@ int main() {
                 modificarProductos(archivoAseo);
                 break;
             case 7:
-                cout << "Funcionalidad de realizar compra aún no implementada." << endl;
+                realizarCompra(listaProductos, numProductos);
                 break;
             case 8:
                 cout << "Saliendo del programa..." << endl;
                 break;
             default:
-                cout << "Opción no válida. Por favor, seleccione una opción válida." << endl;
+                cout << "Opción no valida. Por favor, seleccione una opción válida." << endl;
                 break;
         }
     } while (opcion != 8);

@@ -1,0 +1,11 @@
+producto;marca;precio;cantidadinventario;descuento;garantia
+Impresora;ImpreDD;165000;10;5;1
+Fotocopiadora;FotocoCC;152000;12;5;1
+Contestadora;ConH;40000;20;5;1
+Router;Routerff;100000;30;5;1
+Radio;Radioss;54000;25;5;1
+Camara;Camera;800000;30;5;1
+Lavadora;LavaO;1300000;10;5;1
+Secadora;SecR;3000000;10;10;1
+Lavavajilla;LavT;2000000;10;10;1
+Ventilador;VenSS;100000;15;25;1

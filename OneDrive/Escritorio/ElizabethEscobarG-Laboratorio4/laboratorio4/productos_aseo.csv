@@ -1,0 +1,11 @@
+producto;marca;precio;cantidadinventario;descuento;material
+Limpido;KK;5000;50;5;plastico
+Guante;guanteE;2500;20;10;plastico
+Detergente;deterYa;2600;50;5;plastico
+Panios de limpieza;LimpiaYa;5000;20;20;algodon
+Limpiavidrio;LimpiaYa;10000;10;20;plastico
+Desengrasante;DesengrasaYa;3000;20;40;plastico
+Desinfectante;DesinfectaJ;3500;20;10;plastico
+Suavizante;Suaviza ;4000;35;5;plastico
+Ambientador;AmbiTT;3000;20;0;plastico
+Desmanchador;DesM;6000;20;0;plastico
