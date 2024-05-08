@@ -1,32 +1,84 @@
 #ifndef CUENTACORRIENTE_H
 #define CUENTACORRIENTE_H
 #include <iostream>
+#include<cuentaCorriente.cpp>
 using namespace std;
 
 class CuentaCorriente
 {
 private:
-    string nombre, apellido, direccion, telefono ;
+    string nombre, apellido, direccion, telefono,clave ;
     double saldo;
+    int idCliente;
 
 
 public:
-    string getNombre() , getApellido(), getDireccion(), getTelefono();
-    float retirarDinero, ingresarDinero,consultarCuenta, saldoNegativo;
-    void setNombre(string _nombre), setApellido(string _apellido), setDireccion(string _direccion),setTelefono(string _telefono);
-    void setRetirarDinero(double _retirarDinero), setIngresarDinero(double _ingresarDinero), setConsultarCuenta();
+        void setNombre(string _nombre){
+            nombre = _nombre;
+        }
+
+        string getNombre(){
+            return nombre;
+        }
+
+        void setApellido(string _apellido){
+            apellido = _apellido;
+        }
+
+        string getApellido(){
+            return apellido;
+        }
+
+        void setTelefono(string _telefono){
+            telefono = _telefono;
+        }
+
+        string getTelefono(){
+            return telefono;
+        }
+
+        void setIdCliente(int _idCliente){
+            idCliente= _idCliente;
+        }
+
+        int getIdCliente(){
+            return idCliente;
+        }
+
+        void setClave(int _clave){
+            clave = _clave;
+        }
+
+        string getClave(){
+            return clave;
+        }
 
 
-public:
-    float getRetirarDinero() const;
-    float getIngresarDinero() const;
-    float getConsultarCuenta() const;
-    float getSaldoNegativo() const;
-    void setSaldoNegativo(float newSaldoNegativo);
-    void calcularSaldo(double cantidad);
-    double getSaldo() const;
-    void setSaldo(double newSaldo);
-    CuentaCorriente() : saldo(0.0) {}
+
+        CuentaCorriente() : saldo(0.0) {}
+
+
+
+        CuentaCorriente(string _nombre,string _apellido,string _telefono, int _idCliente, int _clave){
+            nombre = _nombre;
+            apellido =_apellido;
+            telefono = _telefono;
+            idCliente = _idCliente;
+            clave = _clave;
+
+        }
+
+
+        void ingresarDinero(double cantidad);
+        void retirarDinero(double cantidad);
+        void consultarCuenta() const;
+        bool saldoNegativo() const;
+        void cambiarClave(string nuevaClave);
+
+
+
 };
 
 #endif // CUENTACORRIENTE_H
+
+

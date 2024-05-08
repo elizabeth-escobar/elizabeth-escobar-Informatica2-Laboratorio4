@@ -1,9 +1,12 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include<productos.h>
 #include<cuentaCorriente.h>
 #include<compra.h>
 #include<productos.cpp>
 #include<compra.cpp>
+#include <limits>
 
 using namespace std;
 
@@ -19,21 +22,29 @@ const string archivoAseo = "productos_aseo.csv";
 // Función para mostrar los productos de una categoría específica
 void mostrarProductos(string archivoCSV) {
     cout << "\n::::::::::PRODUCTOS::::::::::" << endl;
+    cout << "Intentando abrir el archivo: " << archivoCSV << endl;
+
     ifstream archivo(archivoCSV);
-    if (!archivo) {
+    if (!archivo.is_open()) {
         cout << "Error al abrir el archivo: " << archivoCSV << endl;
         return;
     }
 
     string linea;
     while (getline(archivo, linea)) {
-        cout << linea << endl;
+        stringstream ss(linea);
+        string campo;
+        while (getline(ss, campo, ',')) {
+            cout << campo << "\t";
+        }
+        cout << endl;
     }
     archivo.close();
 }
 
 // Función para modificar los productos de una categoría específica
 void modificarProductos(string archivoCSV) {
+
     ifstream archivoEntrada(archivoCSV);
     if (!archivoEntrada) {
         cout << "Error al abrir el archivo: " << archivoCSV << endl;
@@ -49,9 +60,9 @@ void modificarProductos(string archivoCSV) {
     }
     archivoEntrada.close();
 
-    // Solicitar al usuario el número del producto a modificar
+    // Solicitar al usuario el numero del producto a modificar
     int numeroProducto;
-    cout << "\nIngrese el número del producto a modificar: ";
+    cout << "\nIngrese el numero del producto a modificar: ";
     cin >> numeroProducto;
 
     // Abrir el archivo en modo escritura para modificar el producto seleccionado
@@ -67,7 +78,7 @@ void modificarProductos(string archivoCSV) {
         if (contador == numeroProducto) {
             // Mostrar los detalles del producto seleccionado
             cout << "\nProducto seleccionado: " << linea << endl;
-            // Solicitar al usuario los nuevos datos del producto
+            // Solicitar al usuario los nuºevos datos del producto
             string nuevoProducto;
             cout << "Ingrese los nuevos detalles del producto (nombre, marca, precio, descuento, etc.): ";
             cin.ignore(); // Limpiar el buffer de entrada
@@ -85,10 +96,71 @@ void modificarProductos(string archivoCSV) {
     archivoSalida.close();
 }
 
+
+
+
+void realizarCompra(productos* listaProductos[], int numProductos, CuentaCorriente& cuenta) {
+    compra carritoCompra;
+
+    bool seguirComprando = true;
+    while (seguirComprando) {
+        cout << "\nPRODUCTOS DISPONIBLES:" << endl;
+        for (int i = 0; i < numProductos; ++i) {
+            cout << i + 1 << ". " << listaProductos[i]->getNombre() << " - $" << listaProductos[i]->getPrecio() << " - Cantidad disponible: " << listaProductos[i]->getCantidadInventario() << endl;
+        }
+
+        int opcionProducto, cantidad;
+        cout << "\nSeleccione un producto para agregar al carrito (0 para finalizar la compra): ";
+        cin >> opcionProducto;
+
+        if (opcionProducto == 0) {
+            seguirComprando = false;
+            continue;
+        }
+
+        opcionProducto--; // Ajustar al índice del arreglo
+
+        if (opcionProducto < 0 || opcionProducto >= numProductos) {
+            cout << "Opción inválida." << endl;
+            continue;
+        }
+
+        cout << "Ingrese la cantidad que desea comprar: ";
+        cin >> cantidad;
+
+        if (cantidad <= 0) {
+            cout << "Cantidad inválida." << endl;
+            continue;
+        }
+
+        if (cantidad > listaProductos[opcionProducto]->getCantidadInventario()) {
+            cout << "No hay suficiente cantidad en el inventario." << endl;
+            continue;
+        }
+
+        // Agregar el producto al carrito de compras
+        carritoCompra.agregarProducto(listaProductos[opcionProducto]->getNombre(), cantidad, listaProductos[opcionProducto]->getPrecio());
+        listaProductos[opcionProducto]->setCantidadInventario(listaProductos[opcionProducto]->getCantidadInventario() - cantidad);
+        cout << "Producto agregado al carrito." << endl;
+
+        // Limpiar el buffer de entrada para evitar problemas con cin
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    carritoCompra.aplicarCargo(cuenta);
+
+    // Imprimir el recibo
+    carritoCompra.imprimirRecibo();
+}
+
+
+
+
 int main() {
     int opcion;
     // Declarar e inicializar listaProductos y numProductos
         productos* listaProductos[MAX_PRODUCTOS];
+        CuentaCorriente cuentaCorriente;
         int numProductos = 0;
 
     do {
@@ -124,13 +196,13 @@ int main() {
                 modificarProductos(archivoAseo);
                 break;
             case 7:
-                realizarCompra(listaProductos, numProductos);
+                realizarCompra(listaProductos, numProductos, cuentaCorriente);
                 break;
             case 8:
                 cout << "Saliendo del programa..." << endl;
                 break;
             default:
-                cout << "Opción no valida. Por favor, seleccione una opción válida." << endl;
+                cout << "Opcion no valida. Por favor, seleccione una opción valida." << endl;
                 break;
         }
     } while (opcion != 8);

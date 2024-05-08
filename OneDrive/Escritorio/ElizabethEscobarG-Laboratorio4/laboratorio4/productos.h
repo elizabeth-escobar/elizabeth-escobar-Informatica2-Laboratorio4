@@ -145,6 +145,8 @@ public:
 
     }
 
+    int cargarProductosDesdeCSV(productos* listaProductos[], int& numProductos);
+
 };
 
 

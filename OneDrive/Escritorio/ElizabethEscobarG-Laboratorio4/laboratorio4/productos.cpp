@@ -36,20 +36,20 @@ int cargarProductosDesdeCSV(productos* listaProductos[], int& numProductos) {
             getline(ss, marca, ',');
             getline(ss, tipo, ',');
             ss >> precio;
-            ss.ignore(); // Ignorar la coma
+            ss.ignore(); // Ignorar punto y coma
             ss >> cantidadInventario;
             ss.ignore();
             ss >> descuento;
 
             // Dependiendo del tipo de producto, leer los datos adicionales y crear el objeto correspondiente
             if (tipo == "comestible") {
-                ss.ignore(); // Ignorar la coma
+                ss.ignore(); // Ignorar punto y coma
                 ss >> mesVencimiento;
                 ss.ignore();
                 ss >> anioVencimiento;
                 listaProductos[totalProductos++] = new comestibles(nombre, marca, precio, cantidadInventario, descuento, mesVencimiento, anioVencimiento);
             } else if (tipo == "electronicos") {
-                ss.ignore(); // Ignorar la coma
+                ss.ignore(); // Ignorar punto y coma
                 ss >> garantia;
                 listaProductos[totalProductos++] = new electronicos(nombre, marca, precio, cantidadInventario, descuento, garantia);
             } else if (tipo == "aseo") {

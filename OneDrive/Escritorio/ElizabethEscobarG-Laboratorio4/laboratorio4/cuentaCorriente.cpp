@@ -1,91 +1,50 @@
 #include<iostream>
+#include <iomanip>
 #include "cuentaCorriente.h"
 using namespace std;
 
 
-
-
-double CuentaCorriente::getSaldo() const
-{
-    return saldo;
+// Método para retirar dinero
+void CuentaCorriente::retirarDinero(double cantidad) {
+    if (cantidad <= saldo) {
+        saldo -= cantidad;
+        cout << "Retiro exitoso. Nuevo saldo: $" << fixed << setprecision(2) << saldo << endl;
+    } else {
+        cout << "No hay suficiente saldo para realizar el retiro." << endl;
+    }
 }
 
-
-string CuentaCorriente::getNombre(){
-    return nombre;
+// Método para ingresar dinero
+void CuentaCorriente::ingresarDinero(double cantidad) {
+    saldo += cantidad;
+    cout << "Ingreso exitoso. Nuevo saldo: $" << fixed << setprecision(2) << saldo << endl;
 }
 
-string CuentaCorriente::getApellido(){
-    return apellido;
+// Método para consultar la cuenta
+void CuentaCorriente::consultarCuenta() const {
+    cout << "Datos de la cuenta:" << endl;
+    cout << "Nombre: " << nombre << " " << apellido << endl;
+    cout << "Dirección: " << direccion << endl;
+    cout << "Teléfono: " << telefono << endl;
+    cout << "Saldo: $" << fixed << setprecision(2) << saldo << endl;
 }
 
-string CuentaCorriente::getDireccion(){
-    return direccion;
-}
-
-string CuentaCorriente::getTelefono(){
-    return telefono;
-}
-
-float CuentaCorriente::getSaldoNegativo() const
-{
+// Método para verificar si el saldo está en números rojos
+bool CuentaCorriente::saldoNegativo() const {
     return saldo < 0;
 }
 
-/*void CuentaCorriente::setSaldoNegativo(float newSaldoNegativo)
-{
-    saldoNegativo = newSaldoNegativo;
-}*/
-
-float CuentaCorriente::getConsultarCuenta() const
-{
-    return consultarCuenta;
+// Método para cambiar la clave
+void CuentaCorriente::cambiarClave(string nuevaClave) {
+    string claveAnterior;
+    cout << "Ingrese la clave anterior: ";
+    cin >> claveAnterior;
+    if (claveAnterior == clave) {
+        clave = nuevaClave;
+        cout << "Clave cambiada exitosamente." << endl;
+    } else {
+        cout << "La clave anterior ingresada es incorrecta. No se pudo cambiar la clave." << endl;
+    }
 }
 
-float CuentaCorriente::getIngresarDinero() const
-{
-    return ingresarDinero;
-}
 
-float CuentaCorriente::getRetirarDinero() const
-{
-    return retirarDinero;
-}
-
-//Metodos
-
-void CuentaCorriente::setNombre(string _nombre){
-    nombre = _nombre;
-}
-
-void CuentaCorriente::setApellido(string _apellido){
-    apellido = _apellido;
-}
-
-void CuentaCorriente::setDireccion(string _direccion){
-    direccion = _direccion;
-}
-
-void CuentaCorriente::setTelefono(string _telefono){
-    telefono = _telefono;
-}
-
-void CuentaCorriente::setSaldo(double newSaldo) {
-    saldo = newSaldo;
-}
-
-void CuentaCorriente::calcularSaldo(double cantidad) {
-    saldo += cantidad;
-}
-
-/*void CuentaCorriente::setConsultarCuenta() {
-    saldo;
-}*/
-
-void CuentaCorriente::setIngresarDinero(double cantidad) {
-    saldo += cantidad;
-}
-
-void CuentaCorriente::setRetirarDinero(double cantidad) {
-    saldo -= cantidad;
-}
